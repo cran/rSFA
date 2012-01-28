@@ -1,0 +1,22 @@
+\name{customRepmat}
+\alias{customRepmat}
+\title{Custom repmat Function}
+\usage{
+  customRepmat(a, n, m)
+}
+\arguments{
+  \item{a}{to be repeated}
+
+  \item{n}{repeater parameter}
+
+  \item{m}{repeater parameter}
+}
+\value{
+  Returns the repeated dataset
+}
+\description{
+  R version of the matlab function repmat, repeating a by m
+  x n
+}
+\keyword{internal}
+

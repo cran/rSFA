@@ -1,0 +1,29 @@
+\name{lcovTransform}
+\alias{lcovTransform}
+\title{Transform a covariance object}
+\usage{
+  lcovTransform(lcov, A)
+}
+\arguments{
+  \item{lcov}{A list that contains all information about
+  the handled covariance-structure to be transformed}
+
+  \item{A}{linear function by which covariance object is to
+  be transformed}
+}
+\value{
+  returns the fixed covariance list structure
+}
+\description{
+  Computes the definitive covariance matrix and the average
+  of the covariance object referenced by lcov after a
+  series of update operations.
+}
+\note{
+  lcovFix(lcov) has to be used before this function is
+  applied
+}
+\references{
+  \code{\link{lcovFix}}
+}
+

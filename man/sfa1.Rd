@@ -1,0 +1,28 @@
+\name{sfa1}
+\alias{sfa1}
+\title{The SFA1 algorithm, linear SFA.}
+\usage{
+  sfa1(x)
+}
+\arguments{
+  \item{x}{Input data, each column a different variable}
+}
+\value{
+  list \code{sfaList} with all learned information, where
+  \code{sfaList$y} contains the outputs
+}
+\description{
+  Y = sfa1(X) performs linear Slow Feature Analysis on the
+  input data X and returns the output signals Y ordered by
+  increasing temporal variation, i.e. the first signal
+  Y[,1] is the slowest varying one, Y[,2] the next slowest
+  varying one and so on. The input data have to be
+  organized with each variable on a column and each data
+  point on a row, i.e. X(t,i) is the value of variable nr.
+  i at time t.
+}
+\references{
+  \code{\link{sfaStep}} \code{\link{sfa1Create}}
+  \code{\link{sfaExecute}}
+}
+

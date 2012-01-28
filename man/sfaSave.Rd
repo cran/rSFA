@@ -1,0 +1,20 @@
+\name{sfaSave}
+\alias{sfaSave}
+\title{Save a SFA object.}
+\usage{
+  sfaSave(sfaList, filename)
+}
+\arguments{
+  \item{sfaList}{A list that contains all information about
+  the handled sfa-structure}
+
+  \item{filename}{Save sfa list to this file}
+}
+\description{
+  Save a SFA object.
+}
+\references{
+  \code{\link{sfaLoad}}
+}
+\keyword{internal}
+

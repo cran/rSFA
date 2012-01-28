@@ -1,0 +1,5 @@
+sfaDemo				Simple demo of sfa
+sfaExpandDemo		Demonstrates how to use custom expansion functions
+sfaDrivingDemo		Driving Force Demo
+sfaClass1Demo		Classification Demo with artificial patterns
+sfaLongDatasetDemo		Demonstration for doing chunk-wise sfa for long data sets

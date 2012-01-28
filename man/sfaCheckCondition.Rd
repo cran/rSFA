@@ -1,0 +1,18 @@
+\name{sfaCheckCondition}
+\alias{sfaCheckCondition}
+\title{Check Condition of a matrix for SFA}
+\usage{
+  sfaCheckCondition(matr, datatype)
+}
+\arguments{
+  \item{matr}{matrix to be checked}
+
+  \item{datatype}{string to identify "input" or "expanded"
+  data}
+}
+\description{
+  Creates warnings with recommendations for different
+  settings, if given matrix is ill-conditioned.
+}
+\keyword{internal}
+
