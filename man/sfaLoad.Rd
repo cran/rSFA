@@ -5,7 +5,8 @@
   sfaLoad(filename)
 }
 \arguments{
-  \item{filename}{Load sfa list from this file name}
+  \item{filename}{Load list \code{sfaList} from this file
+  name}
 }
 \value{
   list \code{sfaList}

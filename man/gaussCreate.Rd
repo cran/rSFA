@@ -15,7 +15,7 @@
 \description{
   Create an Gaussian classifier object
 }
-\references{
+\seealso{
   \code{\link{gaussClassifier}}
 }
 

@@ -1,13 +1,17 @@
 ###################################################################################
-#' Preprocessing for sfa classification
+#' Preprocessing for SFA classification
+#'
+#' Helper function for  \code{\link{sfaClassify}} 
 #' 
 #' @param sfaList 		A list that contains all information about the handled sfa-structure
 #' @param x				Input data, each column a different variable
 #' @param opts			list
-
-#' @return preprocessed data
-#' @references  \code{\link{sfaClassify}} 
+#'
+#' @return preprocessed data, which is \code{sfaList$W0 %*% (x - sfaList$avg0) }
+#' 
+#' @seealso  \code{\link{sfaClassPredict}} \code{\link{sfaClassify}} 
 #' @export
+#' @keywords internal
 ###################################################################################
 sfaPreproc <- function(sfaList, x, opts){
 	if(is.vector(x)){x=t(as.matrix(x))}
@@ -26,18 +30,19 @@ sfaPreproc <- function(sfaList, x, opts){
 #'
 #' @param xtst			NTST x IDIM, test input data
 #' @param realcTst		1 x NTST, test class labels
-#' @param opts			list with several parameter settings:\cr
-#'       				gaussdim\cr
-#'        				...\cr
-#'       				 *Filename [* = s,g,x] from where to load the models (see sfaClassModel)
+#' @param opts			list with several parameter settings: \describe{
+#'       				\item{gaussdim}{}
+#'        			\item{	... }{}
+#'       				\item{ *Filename}{ [* = s,g,x] from where to load the models (see \code{\link{sfaClassify}})   }
+#' }
 #'
-#' @return list \code{res} \cr
-#' - \code{res$errtst} 1 x 2 matrix: error rate with / w/o SFA on test set 
-#' - \code{res$ytst} output from SFA when applied to test data
-#' - \code{res$predT} predictions with SFA + GaussClassifier on test set
-#' - \code{res$predX} predictions w/o SFA (only GaussClassifier) on test set (only if opts.xFilename exists)
+#' @return list \code{res} containing \cr
+#'    \item{res$errtst}{ 1 x 2 matrix: error rate with / w/o SFA on test set }
+#'    \item{res$ytst}{ output from SFA when applied to test data  }
+#'    \item{res$predT}{ predictions with SFA + GaussClassifier on test set }
+#'    \item{res$predX}{ predictions w/o SFA (only GaussClassifier) on test set (only if opts.xFilename exists) }
 #'
-#' @references  \code{\link{sfaClassify}} \code{\link{sfaExecute}}
+#' @seealso  \code{\link{sfaClassify}} \code{\link{sfaExecute}}
 #' @export
 ###################################################################################
 sfaClassPredict <- function(xtst,realcTst,opts){	
@@ -87,15 +92,21 @@ sfaClassPredict <- function(xtst,realcTst,opts){
 #' @param realclass 	1 x NREC, training class labels
 #' @param xtst			NTST x IDIM, test input data
 #' @param realcTst		1 x NTST, test class labels
-#' @param opts			list with several parameter settings:\cr
+#' @param opts			list with several parameter settings: \describe{
+#'       				\item{gaussdim}{}
+#'        			\item{	... }{}
+#'       				\item{ *Filename}{ [* = s,g,x] from where to load the models (see \code{\link{sfaClassify}})   }
+#' }
 #'
-#' @return list \code{res} \cr
-#' - \code{res$errtrn} 1 x 2 matrix: error rate with / w/o SFA on training set 
-#' - \code{res$errtst} 1 x 2 matrix: error rate with / w/o SFA on test set 
-#' - \code{res$y} output from SFA when applied to training data
-#' - \code{res$ytst} output from SFA when applied to test data
-#' - \code{res$predT} predictions with SFA + GaussClassifier on test set
-#' - \code{res$predX} predictions w/o SFA (only GaussClassifier) on test set
+#' @return list \code{res} containing \cr
+#'    \item{res$errtrn}{ 1 x 2 matrix: error rate with / w/o SFA on training set }
+#'    \item{res$errtst}{ 1 x 2 matrix: error rate with / w/o SFA on test set }
+#'    \item{res$y}{ output from SFA when applied to training data  }
+#'    \item{res$ytst}{ output from SFA when applied to test data  }
+#'    \item{res$predT}{ predictions with SFA + GaussClassifier on test set }
+#'    \item{res$predX}{ predictions w/o SFA (only GaussClassifier) on test set (only if opts.xFilename exists) }
+#'
+#' @seealso  \code{\link{sfaClassPredict}} \code{\link{sfaExecute}}
 #' @export
 ###################################################################################
 sfaClassify <- function(x,realclass,xtst=0,realcTst=0,opts){
@@ -338,7 +349,7 @@ sfaClassify <- function(x,realclass,xtst=0,realcTst=0,opts){
 	res$errtrn=errtrn;
 	res$errtst=errtst;
 	res$y=y; 				#% (N_REC+N_PB) x IDIM, output data of sfa_execute on training set
-	res$y=ytst;				#% NTST x IDIM, output data of sfa_execute on test set 
+	res$ytst=ytst;				#% NTST x IDIM, output data of sfa_execute on test set 
 	res$predT=predT;  		#% predictions on test set with SFA + GaussClassifier
 	res$predXT=predXT;  	#% predictions on test set w/o SFA (only GaussClassifier)
 	res$predC=predC;        #% predictions on traing set with SFA + GaussClassifier
@@ -346,4 +357,4 @@ sfaClassify <- function(x,realclass,xtst=0,realcTst=0,opts){
 	res$sfaList=sfaList;
 	#res$hdg=hdg;
 	return(res) 
-} #end of sfaClassModel
+} #end of sfaClassify

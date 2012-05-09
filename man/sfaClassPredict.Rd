@@ -9,18 +9,19 @@
 
   \item{realcTst}{1 x NTST, test class labels}
 
-  \item{opts}{list with several parameter settings:\cr
-  gaussdim\cr ...\cr *Filename [* = s,g,x] from where to
-  load the models (see sfaClassModel)}
+  \item{opts}{list with several parameter settings:
+  \describe{ \item{gaussdim}{} \item{ ... }{} \item{
+  *Filename}{ [* = s,g,x] from where to load the models
+  (see \code{\link{sfaClassify}}) } }}
 }
 \value{
-  list \code{res} \cr - \code{res$errtst} 1 x 2 matrix:
-  error rate with / w/o SFA on test set - \code{res$ytst}
-  output from SFA when applied to test data -
-  \code{res$predT} predictions with SFA + GaussClassifier
-  on test set - \code{res$predX} predictions w/o SFA (only
-  GaussClassifier) on test set (only if opts.xFilename
-  exists)
+  list \code{res} containing \cr \item{res$errtst}{ 1 x 2
+  matrix: error rate with / w/o SFA on test set }
+  \item{res$ytst}{ output from SFA when applied to test
+  data } \item{res$predT}{ predictions with SFA +
+  GaussClassifier on test set } \item{res$predX}{
+  predictions w/o SFA (only GaussClassifier) on test set
+  (only if opts.xFilename exists) }
 }
 \description{
   Use a SFA classification model (stored in
@@ -31,7 +32,7 @@
   Analysis. Cognitive Sciences EPrint Archive (CogPrint)
   4104, http://cogprints.org/4104/ (2005)
 }
-\references{
+\seealso{
   \code{\link{sfaClassify}} \code{\link{sfaExecute}}
 }
 

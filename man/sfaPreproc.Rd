@@ -1,6 +1,6 @@
 \name{sfaPreproc}
 \alias{sfaPreproc}
-\title{Preprocessing for sfa classification}
+\title{Preprocessing for SFA classification}
 \usage{
   sfaPreproc(sfaList, x, opts)
 }
@@ -13,12 +13,14 @@
   \item{opts}{list}
 }
 \value{
-  preprocessed data
+  preprocessed data, which is \code{sfaList$W0 %*% (x -
+  sfaList$avg0) }
 }
 \description{
-  Preprocessing for sfa classification
+  Helper function for \code{\link{sfaClassify}}
 }
-\references{
-  \code{\link{sfaClassify}}
+\seealso{
+  \code{\link{sfaClassPredict}} \code{\link{sfaClassify}}
 }
+\keyword{internal}
 

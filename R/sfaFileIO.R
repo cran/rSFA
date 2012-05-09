@@ -1,7 +1,7 @@
 ###################################################################################
 #' Load a SFA object.
 #'
-#' @param filename		Load sfa list from this file name
+#' @param filename		Load list \code{sfaList} from this file name
 #'
 #' @return list \code{sfaList}
 #'
@@ -19,7 +19,7 @@ sfaLoad<- function (filename){
 #' Save a SFA object.
 #'
 #' @param sfaList 		A list that contains all information about the handled sfa-structure
-#' @param filename		Save sfa list to this file
+#' @param filename		Save list \code{sfaList} to this file
 #'
 #' @references  \code{\link{sfaLoad}} 
 #' @keywords internal
@@ -33,7 +33,7 @@ sfaSave<- function (sfaList, filename){
 ###################################################################################
 #' Load a GAUSS object.
 #'
-#' @param filename		Load gauss list from this file
+#' @param filename		Load list \code{gauss} from this file
 #'
 #' @return list \code{gauss}
 #'
@@ -50,8 +50,8 @@ gaussLoad<- function (filename){
 ###################################################################################
 #' Save a GAUSS object.
 #'
-#' @param gauss 		A list that contains all information about the handled gauss-structure
-#' @param filename		Save gauss list to this file
+#' @param gauss 		  A list that contains all information about the handled gauss-structure
+#' @param filename		Save list \code{gauss} to this file
 #'
 #' @references  \code{\link{gaussLoad}} 
 #' @keywords internal

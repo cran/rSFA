@@ -30,7 +30,8 @@
   lcovFix(lcov) has to be used before this function is
   applied
 }
-\references{
+\seealso{
   \code{\link{lcovFix}} \code{\link{lcovPca2}}
 }
+\keyword{internal}
 

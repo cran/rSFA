@@ -14,7 +14,8 @@
 \description{
   Create a new covariance object.
 }
-\references{
+\seealso{
   \code{\link{lcovUpdate}}
 }
+\keyword{internal}
 

@@ -1,19 +1,10 @@
 ###################################################################################
 #' Update a step of the SFA algorithm. 
 #' 
-#'  sfaStep() updates the current step of the SFA
-#'	algorithm. Example: suppose you have divided your training data into two chunks,
-#'  DATA1 and DATA2. Let the number of input dimensions be N. To apply
-#'  SFA on them write:\cr
-#'    sfaL = sfa2Create(N,xpDim(N))\cr
-#'    sfaL = sfaStep(hdl, DATA1, "preprocessing")\cr
-#'    sfaL = sfaStep(hdl, DATA2)\cr
-#'    sfaL = sfaStep(hdl, DATA1, "expansion")\cr
-#'    sfaL = sfaStep(hdl, DATA2)\cr
-#'    sfaL = sfaStep(hdl, NULL, "sfa")\cr
-#'    output1 = sfaExecute(hdl, DATA1)\cr
-#'    output2 = sfaExecute(hdl, DATA2)
-#'
+#'  sfaStep() updates the current step of the SFA algorithm. Depending on \code{sfaList$deg}
+#'  it calls either \code{\link{sfa1Step}} or \code{\link{sfa2Step}} to do the main work. 
+#'  See further documentation there
+#'	
 #' @param sfaList 			A list that contains all information about the handled sfa-structure
 #' @param arg				Input data, each column a different variable
 #' @param step				Specifies the current SFA step.  Must be given in the right sequence: 
@@ -21,15 +12,28 @@
 #'								for SFA2 objects:  "preprocessing", "expansion", "sfa"		
 #' 						  	Each time a new step is invoked, the previous one is closed, which
 #'   						might take some time.				
-#' @param method			Method to be used: "SVDSFA" (recommended) or "GENEIG" (unstable) for step="sfa" \cr
-#'							Else use "TIMESERIES" or "CLASSIF". Irrelevant if sfa1step is used.
-#' 						 	GENEIG is not implemented in the current version, since
-#' 						  	R lacks the option to calculate generalized eigenvalues easily.
+#' @param method			Method to be used: For \code{sfaList$step="expansion"} the choices are "TIMESERIES" or "CLASSIF". \cr
+#'							For \code{sfaList$step="sfa"} (\code{\link{sfa2Step}} only) the choices are "SVDSFA" (recommended) or "GENEIG" (unstable).
 #'
-#' @return list \code{sfaList} \cr
-#' - \code{sfaList} like the input, new information added to this list.
+#' @return list \code{sfaList} taken from the input, with new information added to this list. 
+#'    See \code{\link{sfa1Step}} or \code{\link{sfa2Step}} for details.
 #'
-#' @references  \code{\link{sfa1Create}} \code{\link{sfa2Create}} \code{\link{sfaExecute}}
+#' @examples
+#'    ## Suppose you have divided your training data into two chunks,
+#'    ## DATA1 and DATA2. Let the number of input dimensions be N. To apply
+#'    ## SFA on them write:
+#'    \dontrun{ 
+#'    sfaList = sfa2Create(N,xpDim(N))
+#'    sfaList = sfaStep(sfaList, DATA1, "preprocessing")
+#'    sfaList = sfaStep(sfaList, DATA2)
+#'    sfaList = sfaStep(sfaList, DATA1, "expansion")
+#'    sfaList = sfaStep(sfaList, DATA2)
+#'    sfaList = sfaStep(sfaList, NULL, "sfa")
+#'    output1 = sfaExecute(sfaList, DATA1)
+#'    output2 = sfaExecute(sfaList, DATA2)
+#'    }
+#'
+#' @seealso \code{\link{sfa1Step}} \code{\link{sfa2Step}}  \code{\link{sfa1Create}} \code{\link{sfa2Create}} \code{\link{sfaExecute}}
 #' @export
 ###################################################################################
 sfaStep <- function (sfaList, arg, step=NULL, method=NULL){
@@ -38,7 +42,7 @@ sfaStep <- function (sfaList, arg, step=NULL, method=NULL){
 	}
 	if (is.null(method)){
 		if (!is.null(step) && (step=="sfa")){
-			method="SVDSFA";
+			method = "SVDSFA";
 		}
 		else{
 			method = "TIMESERIES";
@@ -63,15 +67,21 @@ sfaStep <- function (sfaList, arg, step=NULL, method=NULL){
 #'								for SFA2 objects:  "preprocessing", "expansion", "sfa"		
 #' 						  	Each time a new step is invoked, the previous one is closed, which
 #'   						might take some time.				
-#' @param method			Method to be used: "SVDSFA" (recommended) or "GENEIG" (unstable) for step="sfa" \cr
-#'							Else use "TIMESERIES" or "CLASSIF".
+#' @param method			Method to be used: For \code{sfaList$step="expansion"} the choices are "TIMESERIES" or "CLASSIF". \cr
+#'							For \code{sfaList$step="sfa"} the choices are "SVDSFA" (recommended) or "GENEIG" (unstable).
 #' 						 	GENEIG is not implemented in the current version, since
 #' 						 	R lacks the option to calculate generalized eigenvalues easily.
 #'
-#' @return list \code{sfaList} \cr
-#' - \code{sfaList} like the input, new information added to this list.
+#' @return list \code{sfaList} taken from the input, with new information added to this list. 
+#'    Among the new items are:
+#'    \item{avg0}{  mean vector in input space}
+#'    \item{avg1}{  mean vector in expanded space}
+#'    \item{W0}{ (ppRange x ppRange)-matrix, the whitening matrix for the input data}
+#'    \item{C}{ covariance matrix of the time-diff of expanded and sphered data}
+#'    \item{SF}{  (sfaRange x sfaRange)-matrix with rows which contain the directions in expanded space with slow signals. The rows are 
+#'        sorted acc. to increasing eigenvalues of C}
 #'
-#' @references  \code{\link{sfaStep}} \code{\link{sfa2Create}} \code{\link{sfa1Step}}
+#' @seealso  \code{\link{sfaStep}} \code{\link{sfa2Create}} \code{\link{sfa1Step}}
 #' @export
 #' @keywords internal
 ###################################################################################
@@ -275,12 +285,12 @@ sfa2Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
             sfaList$diff=lcovUpdate(sfaList$diff, sfaTimediff(arg,sfaList$axType));
         }
 		else if (method=="CLASSIF"){
-            # extension /WK/08/2009: generate the difference of all pattern
-            # pairs in 'pdiff'
-            K = customSize(arg,1);
-			if(K<2){
-				stop("This class has less than two training records. Expansion can not run, pattern difference can not be calculated")
-			}
+        # extension /WK/08/2009: generate the difference of all pattern
+        # pairs in 'pdiff'
+        K = customSize(arg,1);
+			  if(K<2){
+				  stop("This class has less than two training records. Expansion can not run, pattern difference can not be calculated")
+			  }
             pdiff = NULL;
             for (k in 1:(K-1)){ #TODO: check and maybe improve
                 pdiff = rbind(pdiff, customRep(t(arg[k,]),K-k) - arg[(k+1):K,]);
@@ -292,9 +302,9 @@ sfa2Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
                 #cat(k,"\n");flush.console();
             }
             sfaList$diff=lcovUpdate(sfaList$diff, pdiff);
-		}
+		    }
         else{
-		    warning(paste(method," is not an allowed method in expansion step"));
+		      warning(paste(method," is not an allowed method in expansion step"));
         }		
 	}	
 	return(sfaList)
@@ -312,15 +322,16 @@ sfa2Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
 #'								for SFA2 objects:  "preprocessing", "expansion", "sfa"		
 #' 						  	Each time a new step is invoked, the previous one is closed, which
 #'   						might take some time.				
-#' @param method			Method to be used: "SVDSFA" (recommended) or "GENEIG" (unstable) for step="sfa" \cr
-#'							Else use "TIMESERIES" or "CLASSIF".
-#' 						 	GENEIG is not implemented in the current version, since
-#' 						 	R lacks the option to calculate generalized eigenvalues easily.
+#' @param method			Method to be used: For \code{sfaList$step="expansion"} the choices are "TIMESERIES" or "CLASSIF". \cr
+#'							For \code{sfaList$step="sfa"} currently no choices.
 #'
-#' @return list \code{sfaList} \cr
-#' - \code{sfaList} like the input, new information added to this list.
+#' @return list \code{sfaList} taken from the input, with new information added to this list. 
+#'    Among the new items are:
+#'    \item{avg0}{  mean vector in input space}
+#'    \item{SF}{  (sfaRange x sfaRange)-matrix with rows which contain the directions in expanded space with slow signals. The rows are 
+#'        sorted acc. to increasing eigenvalues of time-diff covariance matrix}
 #'
-#' @references  \code{\link{sfaStep}} \code{\link{sfa1Create}} \code{\link{sfa2Step}}
+#' @seealso  \code{\link{sfaStep}} \code{\link{sfa1Create}} \code{\link{sfa2Step}}
 #' @export
 #' @keywords internal
 ###################################################################################
@@ -392,8 +403,8 @@ sfa1Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
 	if(sfaList$step=="preprocessing"){
 		sfaList$lcov=lcovUpdate(sfaList$lcov,arg);
 		if(method=="TIMESERIES"){
-            sfaList$diff=lcovUpdate(sfaList$diff, sfaTimediff(arg,sfaList$axType));
-        }
+           sfaList$diff=lcovUpdate(sfaList$diff, sfaTimediff(arg,sfaList$axType));
+    }
 		else if (method=="CLASSIF"){
             #% extension /WK/12/2009: generate the difference of all pattern
             #% pairs in 'pdiff'
@@ -402,7 +413,7 @@ sfa1Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
             for (k in 1:(K-1)){ #TODO: check and maybe improve
                 pdiff = rbind(pdiff, customRep(arg[k,],K-k) - arg[(k+1):K,]); 
             }
-			sfaList$diff=lcovUpdate(sfaList$diff, pdiff);
+            sfaList$diff=lcovUpdate(sfaList$diff, pdiff);
 		}
         else{
 		    stop(paste(method," is not an allowed method in expansion step"));

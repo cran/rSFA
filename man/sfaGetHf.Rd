@@ -34,7 +34,7 @@
   but working in the preprocessed spaces can often
   drastically improve the speed of analysis.
 }
-\references{
+\seealso{
   \code{\link{sfa2Create}}
 }
 \keyword{internal}

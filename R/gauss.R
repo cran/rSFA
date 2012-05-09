@@ -4,16 +4,17 @@
 #' 
 #'  Train or apply a Gaussian classifier..
 #'
-#' @param gauss		List created by gaussCreate. Contains also the elements:\cr
-#'					\code{aligned} \cr
-#'					=0: do not align the Gaussian classifiers with axes, use full covariance matrix
-#'					=1 (default): set the off-diagonals in covariance matrix to 0,
-#' 		       		i.e. the Gaussian classifier is forced to be aligned with the	
+#' @param gauss		List created by gaussCreate. Contains also the elements: \describe{
+#'					\item{aligned}{
+#'					     =0: do not align the Gaussian classifiers with axes, use full covariance matrix \cr
+#'					     =1 (default): set the off-diagonals in covariance matrix to 0,
+#' 		       		  i.e. the Gaussian classifier is forced to be aligned with the	
 #'            		axes. This is more robust in the case where the data deviate
-#'            		largely from a multivariate normal distribution.  \cr
-#'    				\code{epsD}  \cr
-#'					[defaults to 0.04] replace diagonal elements of COV smaller than epsD with
-#'            		epsD to avoid too small Gaussians 
+#'            		largely from a multivariate normal distribution.    }
+#'    			\item{epsD}{  
+#'					      [defaults to 0.04] replace diagonal elements of COV smaller than epsD with
+#'            		epsD to avoid too small Gaussians }
+#'          }
 # %					(only for algo='gauss')
 # %     algo  either 'gauss' (def.) or 'nearneig' (nearest neigbour)
 #' @param y    		K x M matrix where K is the total number of patterns and M is the
@@ -24,11 +25,11 @@
 #'            		used and can have any value
 #' @param method 	either "train" (default) or "apply"
 #'
-#' @return list \code{gauss} \cr
-#' - \code{gauss$predC} 1 x K matrix: the predicted class \cr
-#' - \code{gauss$prob} K x NCLASS matrix: prob(k,n) is the estimated probability that pattern k belongs to class m
+#' @return list \code{gauss} containing
+#'    \item{gauss$predC}{ 1 x K matrix: the predicted class  }
+#'    \item{gauss$prob}{ K x NCLASS matrix: prob(k,n) is the estimated probability that pattern k belongs to class m  }
 #'
-#' @references  \code{\link{gaussCreate}} 
+#' @seealso  \code{\link{gaussCreate}} 
 #' @export
 ###################################################################################
 gaussClassifier <- function(gauss,y,realC,method="train"){
@@ -118,7 +119,7 @@ gaussClassifier <- function(gauss,y,realC,method="train"){
 #'
 #' @return list of defaults for gauss classifier
 #'
-#' @references  \code{\link{gaussClassifier}}
+#' @seealso  \code{\link{gaussClassifier}}
 #' @export
 ###################################################################################
 gaussCreate <- function(nclass,dimY){  

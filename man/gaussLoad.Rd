@@ -5,7 +5,7 @@
   gaussLoad(filename)
 }
 \arguments{
-  \item{filename}{Load gauss list from this file}
+  \item{filename}{Load list \code{gauss} from this file}
 }
 \value{
   list \code{gauss}

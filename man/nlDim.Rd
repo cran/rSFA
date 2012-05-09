@@ -13,7 +13,7 @@
 \description{
   Compute the dimension, used for the customexpansion demo.
 }
-\references{
+\seealso{
   \code{\link{sfa2}} \code{\link{nlExpand}}
 }
 \keyword{internal}

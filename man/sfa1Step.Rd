@@ -17,21 +17,25 @@
   is invoked, the previous one is closed, which might take
   some time.}
 
-  \item{method}{Method to be used: "SVDSFA" (recommended)
-  or "GENEIG" (unstable) for step="sfa" \cr Else use
-  "TIMESERIES" or "CLASSIF".  GENEIG is not implemented in
-  the current version, since R lacks the option to
-  calculate generalized eigenvalues easily.}
+  \item{method}{Method to be used: For
+  \code{sfaList$step="expansion"} the choices are
+  "TIMESERIES" or "CLASSIF". \cr For
+  \code{sfaList$step="sfa"} currently no choices.}
 }
 \value{
-  list \code{sfaList} \cr - \code{sfaList} like the input,
-  new information added to this list.
+  list \code{sfaList} taken from the input, with new
+  information added to this list.  Among the new items are:
+  \item{avg0}{ mean vector in input space} \item{SF}{
+  (sfaRange x sfaRange)-matrix with rows which contain the
+  directions in expanded space with slow signals. The rows
+  are sorted acc. to increasing eigenvalues of time-diff
+  covariance matrix}
 }
 \description{
   !!! Do not use this function directly, use sfaStep
   instead !!!
 }
-\references{
+\seealso{
   \code{\link{sfaStep}} \code{\link{sfa1Create}}
   \code{\link{sfa2Step}}
 }

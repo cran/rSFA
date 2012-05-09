@@ -1,6 +1,6 @@
 \name{customSize}
 \alias{customSize}
-\title{Custom Size Function}
+\title{Custom Size Function.}
 \usage{
   customSize(x, i = NULL)
 }

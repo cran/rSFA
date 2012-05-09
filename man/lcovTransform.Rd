@@ -23,7 +23,8 @@
   lcovFix(lcov) has to be used before this function is
   applied
 }
-\references{
+\seealso{
   \code{\link{lcovFix}}
 }
+\keyword{internal}
 

@@ -14,7 +14,7 @@
   Compute the dimension of a vector expanded in the space
   of polynomials of 2nd degree.
 }
-\references{
+\seealso{
   \code{\link{sfa2}} \code{\link{sfaExpand}}
 }
 

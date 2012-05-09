@@ -16,12 +16,11 @@
   input data X and returns the output signals Y ordered by
   increasing temporal variation, i.e. the first signal
   Y[,1] is the slowest varying one, Y[,2] the next slowest
-  varying one and so on. The input data have to be
-  organized with each variable on a column and each data
-  point on a row, i.e. X(t,i) is the value of variable nr.
-  i at time t.
+  and so on. The input data have to be organized with each
+  variable in a column and each data (time) point in a row,
+  i.e. X(t,i) is the value of variable nr. i at time t.
 }
-\references{
+\seealso{
   \code{\link{sfaStep}} \code{\link{sfa1Create}}
   \code{\link{sfaExecute}}
 }

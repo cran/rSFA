@@ -9,18 +9,19 @@
   kept}
 
   \item{axType}{is the type of derivative approximation to
-  be used, see: \code{\link{sfaTimediff}}}
+  be used, see \code{\link{sfaTimediff}}}
 
-  \item{regCt}{regularization constant is not used at the
-  moment}
+  \item{regCt}{regularization constant, currently not used}
 }
 \value{
-  list \code{sfaList} contains all settings for sfa1\cr
+  list \code{sfaList} contains all arguments passed into
+  sfa1create plus \item{deg}{ 2} This list will be expanded
+  by other SFA functions with further SFa results
 }
 \description{
   Create structured list for linear SFA
 }
-\references{
+\seealso{
   \code{\link{sfa1}} \code{\link{sfaStep}}
   \code{\link{sfa2Create}}
 }

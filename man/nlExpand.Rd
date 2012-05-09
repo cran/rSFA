@@ -17,7 +17,7 @@
   This is an optional expansion function, calculating the
   expanded data in [x; x^4].
 }
-\references{
+\seealso{
   \code{\link{sfa2}} \code{\link{sfaExpand}}
   \code{\link{nlDim}}
 }

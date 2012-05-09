@@ -7,12 +7,12 @@
 #' Expand a signal in the space of polynomials of degree 2. 
 #' This is the default expansion function used by rSFA. 
 #'
-#' @param sfaList 			A list that contains all information about the handled sfa-structure
+#' @param sfaList 		A list that contains all information about the handled sfa-structure
 #' @param DATA				Input data, each column a different variable
 #'
 #' @return expanded matrix \code{DATA}
 #'
-#' @references  \code{\link{sfa2}} \code{\link{nlExpand}} \code{\link{xpDim}}
+#' @seealso  \code{\link{sfa2}} \code{\link{nlExpand}} \code{\link{xpDim}}
 #' @export
 ###################################################################################
 sfaExpand <- function (sfaList, DATA){   
@@ -39,7 +39,7 @@ sfaExpand <- function (sfaList, DATA){
 #'
 #' @return Dimension of expanded vector
 #'
-#' @references  \code{\link{sfa2}} \code{\link{sfaExpand}}
+#' @seealso  \code{\link{sfa2}} \code{\link{sfaExpand}}
 #' @export
 ###################################################################################
 xpDim <- function (n){
@@ -53,12 +53,12 @@ xpDim <- function (n){
 #' 
 #' This is an optional expansion function, calculating the expanded data in [x; x^4].
 #'
-#' @param sfaList 			A list that contains all information about the handled sfa-structure
+#' @param sfaList 		A list that contains all information about the handled sfa-structure
 #' @param DATA				Input data, each column a different variable
 #'
 #' @return expanded matrix \code{DATA}
 #'
-#' @references  \code{\link{sfa2}} \code{\link{sfaExpand}} \code{\link{nlDim}}
+#' @seealso  \code{\link{sfa2}} \code{\link{sfaExpand}} \code{\link{nlDim}}
 #' @export
 #' @keywords internal
 ###################################################################################
@@ -77,7 +77,7 @@ nlExpand <- function (sfaList, DATA){    #example for user defined nlExpandFun (
 #'
 #' @return Dimension of expanded vector
 #'
-#' @references  \code{\link{sfa2}} \code{\link{nlExpand}}
+#' @seealso  \code{\link{sfa2}} \code{\link{nlExpand}}
 #' @export
 #' @keywords internal
 ###################################################################################

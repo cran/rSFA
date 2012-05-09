@@ -6,8 +6,8 @@
 #' \tabular{ll}{
 #' Package: \tab rSFA\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.00\cr
-#' Date: \tab 28.01.2012\cr
+#' Version: \tab 1.01\cr
+#' Date: \tab 09.05.2012\cr
 #' Maintainer: \tab Martin Zaefferer \email{martin.zaefferer@@smail.fh-koeln.de}\cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr
@@ -34,15 +34,15 @@ NA #NULL, ends description without hiding first function
 #'    Y = sfa1(X) performs linear Slow Feature Analysis on the input data
 #'    X and returns the output signals Y ordered by increasing temporal
 #'    variation, i.e. the first signal Y[,1] is the slowest varying one,
-#'    Y[,2] the next slowest varying one and so on. The input data have to
-#'    be organized with each variable on a column and each data point on a
+#'    Y[,2] the next slowest and so on. The input data have to be organized 
+#'    with each variable in a column and each data (time) point in a
 #'    row, i.e. X(t,i) is the value of variable nr. i at time t.
 #'
 #' @param x 			Input data, each column a different variable
 #'
 #' @return list \code{sfaList} with all learned information, where \code{sfaList$y} contains the outputs
 #'
-#' @references  \code{\link{sfaStep}} \code{\link{sfa1Create}} \code{\link{sfaExecute}}
+#' @seealso  \code{\link{sfaStep}} \code{\link{sfa1Create}} \code{\link{sfaExecute}}
 #' @export
 ###################################################################################
 sfa1 <- function (x){
@@ -66,28 +66,31 @@ sfa1 <- function (x){
 }
 
 ###################################################################################
-#' The SFA2 algorithm, degree 2 expansion. 
+#' The SFA2 algorithm, SFA with degree 2 expansion. 
 #' 
 #'    Y = sfa2(X) performs expanded Slow Feature Analysis on the input data
 #'    X and returns the output signals Y ordered by increasing temporal
 #'    variation, i.e. the first signal Y[,1] is the slowest varying one,
 #'    Y[,2] the next slowest varying one and so on. The input data have to
-#'    be organized with each variable on a column and each data point on a
-#'    row, i.e. X(t,i) is the value of variable nr. i at time t.
-#'	  By Default an expansion to the space of 2nd degree polynomials is done,
+#'    be organized with each variable in a column and each data (time) point in a
+#'    row, i.e. X(t,i) is the value of variable i at time t.
+#'	  By default an expansion to the space of 2nd degree polynomials is done,
 #'	  this can be changed by using different functions for xpDimFun and sfaExpandFun.
 #'
-#' @param x 				Input data
-#' @param method 			="SVDSFA" for singular value decomposition (recommended) or ="GENEIG" for generalized eigenvalues (unstable!)		
-#' 						 		GENEIG is not implemented in the current version, since
-#' 						  		R lacks the option to calculate generalized eigenvalues easily.
-#' @param ppType			preprocessing type: ="PCA" (principal component analysis) or ="SFA1" (linear sfa)
-#' @param xpDimFun			Function to calculate dimension of expanded data
-#' @param sfaExpandFun		Function to expand data 
+#' @param x 				input data
+#' @param method 		eigenvector calculation method:	="SVDSFA" for singular value decomposition (recommended) or 
+#' 						 		  ="GENEIG" for generalized eigenvalues (unstable!).	GENEIG is not implemented in the current version, since
+#' 						  		R lacks an easy option to calculate generalized eigenvalues.
+#' @param ppType		preprocessing type: ="PCA" (principal component analysis) or ="SFA1" (linear sfa)
+#' @param xpDimFun			 function to calculate dimension of expanded data
+#' @param sfaExpandFun	 function to expand data 
 #'
-#' @return list \code{sfaList} with all learned information, where \code{sfaList$y} contains the Y outputs
+#' @return list \code{sfaList} with all SFA information, among them are
+#'    \item{\code{y}}{ a matrix containing  the output Y (as described above) }
+#'    \item{-}{ all input parameters to \code{\link{sfa2Create}}  }
+#'    \item{-}{ all elements of \code{sfaList}  as specified in \code{\link{sfa2Step}}}
 #'
-#' @references  \code{\link{sfaStep}} \code{\link{sfa1Create}} \code{\link{sfaExecute}}
+#' @seealso  \code{\link{sfa2Step}} \code{\link{sfa2Create}} \code{\link{sfaExecute}} \code{\link{sfa1}} 
 #' @examples
 #' ## prepare input data for simple demo
 #' t=seq.int(from=0,by=0.011,to=2*pi)

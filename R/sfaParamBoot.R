@@ -142,35 +142,34 @@ getSigma <- function(x0,r0,ncmethod) {
 #'
 #' @param realclass		true class of training data (can be vector, numerics, integers, factors)
 #' @param x 			matrix containing the training data
-#' @param opts			list with several parameter settings\cr
-#'						\code{opts$xpDimFun} (=xpDim by default) calculated dimension of expaned SFA space\cr
-#'						\code{opts$deg} degree of expansion (should not be 1, not implemented)
-#'						\code{opts$ppRange} ppRange for SFA algorithm
-#'						\code{opts$nclass} number of unique classes
-#'						\code{opts$doPB} do (1) or do no (0) param. bootstrap.
+#' @param sfaList		list with several parameter settings, e.g. as created by \code{\link{sfa2Create}}\cr
+#'						\code{sfaList$xpDimFun} (=xpDim by default) calculated dimension of expaned SFA space\cr
+#'						\code{sfaList$deg} degree of expansion (should not be 1, not implemented)\cr
+#'						\code{sfaList$ppRange} ppRange for SFA algorithm\cr
+#'						\code{sfaList$nclass} number of unique classes\cr
+#'						\code{sfaList$doPB} do (1) or do no (0) param. bootstrap.
 #'
-#' @return returns a code{list} \cr
-#' - code{list} contains: \cr
-#'  \code{x} training set extended to minimu number of recors1.5*(xpdim+nclass), if necessary 
-#'  \code{realclass} training class labels, extended analogously 
+#' @return a list \code{list} containing:
+#'  \item{x}{ training set extended to minimu number of recors1.5*(xpdim+nclass), if necessary }
+#'  \item{realclass}{ training class labels, extended analogously  }
 #'
-#' @references  \code{\link{addNoisyCopies}}
+#' @seealso  \code{\link{addNoisyCopies}}
 #' @export
 ###################################################################################
-sfaPBootstrap <- function(realclass,x,opts){
-	if(is.null(opts$xpDimFun)){ #set a default, but should allready be set in sfaClassify
-		opts$xpDimFun=xpDim
+sfaPBootstrap <- function(realclass,x,sfaList){
+	if(is.null(sfaList$xpDimFun)){ #set a default, but should allready be set in sfaClassify
+		sfaList$xpDimFun=xpDim
 	}
 	
-    if (opts$deg==1){ warning('sfaPBootstrap not yet applicable for opts$deg==1 --> nothing done');}          
+    if (sfaList$deg==1){ warning('sfaPBootstrap not yet applicable for sfaList$deg==1 --> nothing done');}          
 	else{
-		NTrig = ceiling(1.2*(opts$xpDimFun(opts$ppRange)+opts$nclass));
-		NDesi = ceiling(1.5*(opts$xpDimFun(opts$ppRange)+opts$nclass));
+		NTrig = ceiling(1.2*(sfaList$xpDimFun(sfaList$ppRange)+sfaList$nclass));
+		NDesi = ceiling(1.5*(sfaList$xpDimFun(sfaList$ppRange)+sfaList$nclass));
 		N = customSize(x,1);
 		if (N<=NTrig){
 			#warning("# of training patterns = %d is less than the necessary 1.2*(D_x+K) = %d',N,NTrig));        
-			if (opts$doPB==0){
-				warning("Warning: NOTHING done, because opts$doPB==0");
+			if (sfaList$doPB==0){
+				warning("Warning: NOTHING done, because sfaList$doPB==0");
 			}else {
 				#disp(sprintf('--> augmenting the training set with Parametric Bootstrap to 1.5*(D_x+K) = %d',NDesi));
 				pars=list()

@@ -12,9 +12,9 @@
 #' @param arg				Input data, each column a different variable
 #' @param func				(T x 1) the function to be fitted nonlinearly 
 #'
-#' @return returns a list \code{res} with\cr
-#'	 \code{res$R} (T x 1) the function fitted by NL-regression 
-#'	 \code{res$rcoef} (M x 1) the coefficients for the NL-expanded dimensions 
+#' @return returns a list \code{res} with elements\cr
+#'	 \item{res$R}{ (T x 1) the function fitted by NL-regression  }
+#'	 \item{res$rcoef}{ (M x 1) the coefficients for the NL-expanded dimensions  }
 #' @export
 ###################################################################################
 sfaNlRegress <- function (sfaList, arg, func){

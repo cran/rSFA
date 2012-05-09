@@ -13,17 +13,22 @@
 
   \item{realcTst}{1 x NTST, test class labels}
 
-  \item{opts}{list with several parameter settings:\cr}
+  \item{opts}{list with several parameter settings:
+  \describe{ \item{gaussdim}{} \item{ ... }{} \item{
+  *Filename}{ [* = s,g,x] from where to load the models
+  (see \code{\link{sfaClassify}}) } }}
 }
 \value{
-  list \code{res} \cr - \code{res$errtrn} 1 x 2 matrix:
-  error rate with / w/o SFA on training set -
-  \code{res$errtst} 1 x 2 matrix: error rate with / w/o SFA
-  on test set - \code{res$y} output from SFA when applied
-  to training data - \code{res$ytst} output from SFA when
-  applied to test data - \code{res$predT} predictions with
-  SFA + GaussClassifier on test set - \code{res$predX}
-  predictions w/o SFA (only GaussClassifier) on test set
+  list \code{res} containing \cr \item{res$errtrn}{ 1 x 2
+  matrix: error rate with / w/o SFA on training set }
+  \item{res$errtst}{ 1 x 2 matrix: error rate with / w/o
+  SFA on test set } \item{res$y}{ output from SFA when
+  applied to training data } \item{res$ytst}{ output from
+  SFA when applied to test data } \item{res$predT}{
+  predictions with SFA + GaussClassifier on test set }
+  \item{res$predX}{ predictions w/o SFA (only
+  GaussClassifier) on test set (only if opts.xFilename
+  exists) }
 }
 \description{
   Create a SFA classification mode, predict & evaluate on
@@ -32,5 +37,8 @@
   [Berkes05] Pietro Berkes: Pattern recognition with Slow
   Feature Analysis. Cognitive Sciences EPrint Archive
   (CogPrint) 4104, http://cogprints.org/4104/ (2005)
+}
+\seealso{
+  \code{\link{sfaClassPredict}} \code{\link{sfaExecute}}
 }
 

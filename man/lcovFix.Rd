@@ -16,7 +16,8 @@
   of the covariance object referenced by lcov after a
   series of update operations.
 }
-\references{
+\seealso{
   \code{\link{lcovCreate}} \code{\link{lcovPca}}
 }
+\keyword{internal}
 

@@ -17,7 +17,7 @@
   Expand a signal in the space of polynomials of degree 2.
   This is the default expansion function used by rSFA.
 }
-\references{
+\seealso{
   \code{\link{sfa2}} \code{\link{nlExpand}}
   \code{\link{xpDim}}
 }

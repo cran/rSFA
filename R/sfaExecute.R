@@ -17,10 +17,14 @@
 #'
 #' @return matrix \code{DATA} containing the calculated output \cr
 #'
-#' @references  \code{\link{sfa2}} \code{\link{sfa1}} \code{\link{sfaStep}}
+#' @seealso  \code{\link{sfa2}} \code{\link{sfa1}} \code{\link{sfaStep}}
 #' @export
 ###################################################################################
 sfaExecute <- function (sfaList, DATA, prj=NULL, ncomp=NULL){
+  if (!is.null(ncomp))
+    if (ncomp<1 | ncomp>dim(sfaList$SF)[1])
+      stop(sprintf("argument ncomp=%d not in allowed range [1,%d]",ncomp,dim(sfaList$SF)[1]));
+      
 	if(is.vector(DATA)){DATA=t(as.matrix(DATA))}
 	else{DATA=as.matrix(DATA)};
 	if (sfaList$deg>=2){

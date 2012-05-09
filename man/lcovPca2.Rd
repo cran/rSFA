@@ -27,13 +27,14 @@
   eigenvalue in D is close to zero (more precisely: if
   lam/lam_max < EPS = 1e-7). This is numerically stable in
   the case where the covariance matrix is singular.\cr -
-  Author: Wolfgang Konen, Cologne Univ. , May'2009
+  Author: Wolfgang Konen, Cologne Univ., May'2009
 }
 \note{
   lcovFix(lcov) has to be used before this function is
   applied
 }
-\references{
+\seealso{
   \code{\link{lcovFix}} \code{\link{lcovPca}}
 }
+\keyword{internal}
 

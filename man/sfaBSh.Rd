@@ -1,6 +1,6 @@
 \name{sfaBSh}
 \alias{sfaBSh}
-\title{Backslash operator}
+\title{Backslash operator.}
 \usage{
   sfaBSh(X, Y)
 }
@@ -13,7 +13,7 @@
   Returns coefficients
 }
 \description{
-  Reproduce what matlabs backslash operator can do, using
+  Reproduce what MATLAB's backslash operator can do, using
   qr() and qr.coef().
 }
 \keyword{internal}

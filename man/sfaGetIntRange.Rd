@@ -1,6 +1,6 @@
 \name{sfaGetIntRange}
 \alias{sfaGetIntRange}
-\title{Helper Function of SFA}
+\title{Helper Function of SFA.}
 \usage{
   sfaGetIntRange(range)
 }
@@ -11,7 +11,7 @@
   numeric vector \code{int}
 }
 \description{
-  Helper Function of SFA
+  Helper Function of SFA.
 }
 \keyword{internal}
 

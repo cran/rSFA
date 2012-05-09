@@ -8,7 +8,7 @@
   \item{sfaList}{A list that contains all information about
   the handled sfa-structure}
 
-  \item{filename}{Save sfa list to this file}
+  \item{filename}{Save list \code{sfaList} to this file}
 }
 \description{
   Save a SFA object.

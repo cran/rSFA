@@ -14,9 +14,10 @@
   nonlinearly}
 }
 \value{
-  returns a list \code{res} with\cr \code{res$R} (T x 1)
-  the function fitted by NL-regression \code{res$rcoef} (M
-  x 1) the coefficients for the NL-expanded dimensions
+  returns a list \code{res} with elements\cr \item{res$R}{
+  (T x 1) the function fitted by NL-regression }
+  \item{res$rcoef}{ (M x 1) the coefficients for the
+  NL-expanded dimensions }
 }
 \description{
   Given the data in arg, expand them nonlinearly in the

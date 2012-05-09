@@ -18,7 +18,8 @@
   Updates the covariance object referenced by lcov with a
   new chunk of data DATA.
 }
-\references{
+\seealso{
   \code{\link{lcovCreate}}
 }
+\keyword{internal}
 

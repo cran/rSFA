@@ -1,5 +1,5 @@
 ###################################################################################
-#' Helper Function of SFA
+#' Helper Function of SFA.
 #'
 #' @param range Range
 #'
@@ -53,7 +53,7 @@ customRepmat <- function(a,n,m) {
 }
 
 ###################################################################################
-#' Custom Size Function
+#' Custom Size Function.
 #'
 #' custom R version of matlabs size function. Calls length for vectors, or else calls dim.
 #'
@@ -105,9 +105,9 @@ sfaCheckCondition <- function(matr, datatype){
 }
 
 ###################################################################################
-#' Backslash operator
+#' Backslash operator.
 #'
-#' Reproduce what matlabs backslash operator can do, using qr() and qr.coef().
+#' Reproduce what MATLAB's backslash operator can do, using qr() and qr.coef().
 #'
 #' @param X X matrix
 #' @param Y Y vector

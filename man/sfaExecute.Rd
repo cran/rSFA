@@ -27,7 +27,7 @@
   necessary)\cr 3. projection on the whitened (expanded)
   space\cr 4. projection on the slow functions
 }
-\references{
+\seealso{
   \code{\link{sfa2}} \code{\link{sfa1}}
   \code{\link{sfaStep}}
 }

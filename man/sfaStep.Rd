@@ -17,30 +17,42 @@
   is invoked, the previous one is closed, which might take
   some time.}
 
-  \item{method}{Method to be used: "SVDSFA" (recommended)
-  or "GENEIG" (unstable) for step="sfa" \cr Else use
-  "TIMESERIES" or "CLASSIF". Irrelevant if sfa1step is
-  used.  GENEIG is not implemented in the current version,
-  since R lacks the option to calculate generalized
-  eigenvalues easily.}
+  \item{method}{Method to be used: For
+  \code{sfaList$step="expansion"} the choices are
+  "TIMESERIES" or "CLASSIF". \cr For
+  \code{sfaList$step="sfa"} (\code{\link{sfa2Step}} only)
+  the choices are "SVDSFA" (recommended) or "GENEIG"
+  (unstable).}
 }
 \value{
-  list \code{sfaList} \cr - \code{sfaList} like the input,
-  new information added to this list.
+  list \code{sfaList} taken from the input, with new
+  information added to this list.  See
+  \code{\link{sfa1Step}} or \code{\link{sfa2Step}} for
+  details.
 }
 \description{
   sfaStep() updates the current step of the SFA algorithm.
-  Example: suppose you have divided your training data into
-  two chunks, DATA1 and DATA2. Let the number of input
-  dimensions be N. To apply SFA on them write:\cr sfaL =
-  sfa2Create(N,xpDim(N))\cr sfaL = sfaStep(hdl, DATA1,
-  "preprocessing")\cr sfaL = sfaStep(hdl, DATA2)\cr sfaL =
-  sfaStep(hdl, DATA1, "expansion")\cr sfaL = sfaStep(hdl,
-  DATA2)\cr sfaL = sfaStep(hdl, NULL, "sfa")\cr output1 =
-  sfaExecute(hdl, DATA1)\cr output2 = sfaExecute(hdl,
-  DATA2)
+  Depending on \code{sfaList$deg} it calls either
+  \code{\link{sfa1Step}} or \code{\link{sfa2Step}} to do
+  the main work.  See further documentation there
 }
-\references{
+\examples{
+## Suppose you have divided your training data into two chunks,
+   ## DATA1 and DATA2. Let the number of input dimensions be N. To apply
+   ## SFA on them write:
+   \dontrun{
+   sfaList = sfa2Create(N,xpDim(N))
+   sfaList = sfaStep(sfaList, DATA1, "preprocessing")
+   sfaList = sfaStep(sfaList, DATA2)
+   sfaList = sfaStep(sfaList, DATA1, "expansion")
+   sfaList = sfaStep(sfaList, DATA2)
+   sfaList = sfaStep(sfaList, NULL, "sfa")
+   output1 = sfaExecute(sfaList, DATA1)
+   output2 = sfaExecute(sfaList, DATA2)
+   }
+}
+\seealso{
+  \code{\link{sfa1Step}} \code{\link{sfa2Step}}
   \code{\link{sfa1Create}} \code{\link{sfa2Create}}
   \code{\link{sfaExecute}}
 }

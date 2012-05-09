@@ -1,0 +1,4 @@
+From Version 1.00 to 1.01
+
+	- Bugfix: sfaClassify now returns y and ytst in the correct way
+	- Improvement of documentation

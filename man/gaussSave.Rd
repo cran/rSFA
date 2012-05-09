@@ -8,7 +8,7 @@
   \item{gauss}{A list that contains all information about
   the handled gauss-structure}
 
-  \item{filename}{Save gauss list to this file}
+  \item{filename}{Save list \code{gauss} to this file}
 }
 \description{
   Save a GAUSS object.

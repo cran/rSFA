@@ -30,7 +30,7 @@
 #'	\code{res$f}
 #'	\code{res$c}
 #'
-#' @references  \code{\link{sfa2Create}}
+#' @seealso  \code{\link{sfa2Create}}
 #' @keywords internal
 ###################################################################################
 #TODO needs testing, not exported, internal

@@ -5,8 +5,9 @@
 #'
 #' @return list containing the COVMTX, avg and tlen
 #'
-#' @references  \code{\link{lcovUpdate}}
+#' @seealso  \code{\link{lcovUpdate}}
 #' @export
+#' @keywords internal
 ###################################################################################
 lcovCreate <- function (dim){
 	lcov=list()
@@ -27,8 +28,9 @@ lcovCreate <- function (dim){
 #'
 #' @return list containing the COVMTX, avg and tlen
 #'
-#' @references  \code{\link{lcovCreate}}
+#' @seealso  \code{\link{lcovCreate}}
 #' @export
+#' @keywords internal
 ###################################################################################
 lcovUpdate <- function (lcov, DATA){
 	lcov$COVMTX= lcov$COVMTX +t(DATA)%*%DATA;
@@ -48,8 +50,9 @@ lcovUpdate <- function (lcov, DATA){
 #'
 #' @return returns the fixed covariance list structure
 #'
-#' @references  \code{\link{lcovCreate}} \code{\link{lcovPca}}
+#' @seealso  \code{\link{lcovCreate}} \code{\link{lcovPca}}
 #' @export
+#' @keywords internal
 ###################################################################################
 lcovFix <- function (lcov){
 	tlen=lcov$tlen;
@@ -72,8 +75,9 @@ lcovFix <- function (lcov){
 #'
 #' @return returns the fixed covariance list structure
 #'
-#' @references  \code{\link{lcovFix}}
+#' @seealso  \code{\link{lcovFix}}
 #' @export
+#' @keywords internal
 ###################################################################################
 lcovTransform <- function (lcov, A){ #TODO: untested
 	lcov$avg<-lcov$avg %*% t(A)
@@ -101,8 +105,9 @@ lcovTransform <- function (lcov, A){ #TODO: untested
 #'   containing a list of the eigenvalues. $kvar contains the total
 #'   variance kept in percent.
 #'
-#' @references  \code{\link{lcovFix}} \code{\link{lcovPca2}}
+#' @seealso  \code{\link{lcovFix}} \code{\link{lcovPca2}}
 #' @export
+#' @keywords internal
 ###################################################################################
 lcovPca <- function (lcov,dimRange=NULL){
 	if(is.null(dimRange)){
@@ -141,7 +146,7 @@ lcovPca <- function (lcov,dimRange=NULL){
 #'   corresponding eigenvalue in D is close to zero (more precisely: if
 #'   lam/lam_max < EPS = 1e-7). This is numerically stable in the case where
 #'   the covariance matrix is singular.\cr
-#'  - Author: Wolfgang Konen, Cologne Univ. , May'2009
+#'  - Author: Wolfgang Konen, Cologne Univ., May'2009
 #'
 #' @param lcov 			A list that contains all information about the handled covariance-structure
 #' @param dimRange		A number or vector for dimensionality reduction: \cr 
@@ -155,8 +160,9 @@ lcovPca <- function (lcov,dimRange=NULL){
 #'   containing a list of the eigenvalues. $kvar contains the total
 #'   variance kept in percent.
 #'
-#' @references  \code{\link{lcovFix}} \code{\link{lcovPca}}
+#' @seealso  \code{\link{lcovFix}} \code{\link{lcovPca}}
 #' @export
+#' @keywords internal
 ###################################################################################
 lcovPca2 <- function (lcov,dimRange=NULL){
 	if(is.null(dimRange)){
