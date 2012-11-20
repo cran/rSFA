@@ -8,10 +8,10 @@
 }
 \details{
   \tabular{ll}{ Package: \tab rSFA\cr Type: \tab Package\cr
-  Version: \tab 1.01\cr Date: \tab 09.05.2012\cr
+  Version: \tab 1.02\cr Date: \tab 20.11.2012\cr
   Maintainer: \tab Martin Zaefferer
-  \email{martin.zaefferer@smail.fh-koeln.de}\cr License:
-  \tab GPL (>= 2)\cr LazyLoad: \tab yes\cr }
+  \email{martin.zaefferer@gmx.de}\cr License: \tab GPL (>=
+  2)\cr LazyLoad: \tab yes\cr }
 
   Slow Feature Analysis in R, ported to R based on the
   matlab versions SFA toolkit 1.0 by Pietro Berkes and SFA

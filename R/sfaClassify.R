@@ -16,7 +16,8 @@
 sfaPreproc <- function(sfaList, x, opts){
 	if(is.vector(x)){x=t(as.matrix(x))}
 	else{x=as.matrix(x)};
-	if(opts$gaussprj==0){return((x-customRep(sfaList$avg0,customSize(x,1)))%*%t(sfaList$W0))} 
+	#if(opts$gaussprj==0){return((x-customRep(sfaList$avg0,customSize(x,1)))%*%t(sfaList$W0))} 
+	if(opts$gaussprj==0){return((x-matrix(sfaList$avg0,customSize(x,1),length(sfaList$avg0),byrow=TRUE))%*%t(sfaList$W0))} #MZ, 11.11.12: speedfix
 	else{return(x)}
 } #end of sfaPreproc
 

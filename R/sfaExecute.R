@@ -29,10 +29,10 @@ sfaExecute <- function (sfaList, DATA, prj=NULL, ncomp=NULL){
 	else{DATA=as.matrix(DATA)};
 	if (sfaList$deg>=2){
 		if(is.null(prj)){#TODO: why is prj not used anywhere else here in this function? whats the use of it?			
-			DATA=(DATA-customRep(sfaList$avg0,customSize(DATA,1)))%*%t(sfaList$W0); #check if this can be simplified
+			DATA=(DATA-matrix(sfaList$avg0,customSize(DATA,1),length(sfaList$avg0),byrow=TRUE))%*%t(sfaList$W0); #MZ, 11.11.12: speedfix
 		}
 		DATA=sfaList$sfaExpandFun(sfaList, DATA);
-		DATA=DATA-customRep(sfaList$avg1,customSize(DATA,1));
+		DATA=DATA-matrix(sfaList$avg1,customSize(DATA,1),length(sfaList$avg1),byrow=TRUE);#MZ, 11.11.12: speedfix
 		if(is.null(ncomp)){
 			DATA=DATA%*%t(sfaList$SF);
 		}
@@ -41,7 +41,7 @@ sfaExecute <- function (sfaList, DATA, prj=NULL, ncomp=NULL){
 		}
 	}
 	else{   #deg==1
-		DATA=DATA-customRep(sfaList$avg0,customSize(DATA,1));  #t() here is a fix, since a single vector here is a different default dimension than matlab, also used above
+		DATA=DATA-matrix(sfaList$avg0,customSize(DATA,1),length(sfaList$avg0),byrow=TRUE);#MZ, 11.11.12: speedfix
 		if (!is.null(sfaList$SFWt)){
 			DATA=DATA%*%sfaList$SFWt;
 		}

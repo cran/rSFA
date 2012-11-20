@@ -21,12 +21,15 @@ sfaNlRegress <- function (sfaList, arg, func){
 	#to matrix
 	arg=as.matrix(arg)
 	# project data and reduce dimensionality
-	arg=arg-customRep(sfaList$avg0,customSize(arg,1));
+#	arg=arg-customRep(sfaList$avg0,customSize(arg,1));
+	arg=arg-matrix(sfaList$avg0,customSize(arg,1),length(sfaList$avg0),byrow=TRUE); #MZ, 11.11.12: speedfix
 	# expand data
 	arg=sfaExpand(sfaList, arg%*%t(sfaList$W0));
-	arg=arg-customRep(sfaList$avg1,customSize(arg,1));
+#	arg=arg-customRep(sfaList$avg1,customSize(arg,1));
+	arg=arg-matrix(sfaList$avg1,customSize(arg,1),length(sfaList$avg1),byrow=TRUE); #MZ, 11.11.12: speedfix
 	#now ARG contains (v(t)-v0)' (rows: t, columns: expanded space dim M)
-	fmat = arg * customRepmat (t(func),1,customSize(arg,2)); #no matrix mult
+#	fmat = arg * customRepmat (t(func),1,customSize(arg,2)); 
+	fmat = arg * matrix(t(func),length(func),customSize(arg,2));  #MZ, 11.11.12: speedfix
 	df1 =  colMeans(fmat);  #apply(fmat,2,mean);        # column mean
 	rcoef = ginv(sfaList$myB)%*%df1;
 	# the above line is for regular B (=myB) equivalent to 

@@ -278,7 +278,8 @@ sfa2Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
 		}
 	}
 	if(sfaList$step=="expansion"){
-		arg=arg-customRep(sfaList$avg0,customSize(arg,1));
+		#arg=arg-customRep(sfaList$avg0,customSize(arg,1)); 
+		arg=arg-matrix(sfaList$avg0,customSize(arg,1),length(sfaList$avg0),byrow=T) #MZ, 11.11.12: speedfix
 		arg=sfaList$sfaExpandFun(sfaList, arg %*%  t(sfaList$W0));
 		sfaList$xp=lcovUpdate(sfaList$xp,arg);		
         if(method=="TIMESERIES"){
@@ -288,12 +289,14 @@ sfa2Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
         # extension /WK/08/2009: generate the difference of all pattern
         # pairs in 'pdiff'
         K = customSize(arg,1);
+		lt = customSize(arg,2);
 			  if(K<2){
 				  stop("This class has less than two training records. Expansion can not run, pattern difference can not be calculated")
 			  }
             pdiff = NULL;
             for (k in 1:(K-1)){ #TODO: check and maybe improve
-                pdiff = rbind(pdiff, customRep(t(arg[k,]),K-k) - arg[(k+1):K,]);
+                #pdiff = rbind(pdiff, customRep(t(arg[k,]),K-k) - arg[(k+1):K,]);
+                pdiff = rbind(pdiff, matrix(t(arg[k,]),K-k,lt,byrow=TRUE) - arg[(k+1):K,]);#MZ, 11.11.12: speedfix
                 if (k%%100==0) {       # Time and Mem optimization: do not let pdiff grow too large /WK/01/2012
                   sfaList$diff=lcovUpdate(sfaList$diff, pdiff);
                   pdiff=NULL;
@@ -409,9 +412,11 @@ sfa1Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
             #% extension /WK/12/2009: generate the difference of all pattern
             #% pairs in 'pdiff'
             K = customSize(arg,1);
+			lt = customSize(arg,2);
             pdiff = NULL;
             for (k in 1:(K-1)){ #TODO: check and maybe improve
-                pdiff = rbind(pdiff, customRep(arg[k,],K-k) - arg[(k+1):K,]); 
+                #pdiff = rbind(pdiff, customRep(arg[k,],K-k) - arg[(k+1):K,]); 
+				pdiff = rbind(pdiff, matrix(t(arg[k,]),K-k,lt,byrow=TRUE) - arg[(k+1):K,]);#MZ, 11.11.12: speedfix
             }
             sfaList$diff=lcovUpdate(sfaList$diff, pdiff);
 		}

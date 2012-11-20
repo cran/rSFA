@@ -1,5 +1,5 @@
 Package: rSFA
-Maintainer: Martin Zaefferer <martin.zaefferer@smail.fh-koeln.de>
+Maintainer: Martin Zaefferer <martin.zaefferer@gmx.de>
 License: GPL (>= 2)
 Title: Slow Feature Analysis in R
 Type: Package
@@ -9,14 +9,14 @@ Author: Wolfgang Konen <wolfgang.konen@fh-koeln.de>, Martin Zaefferer,
 Description: Slow Feature Analysis in R, ported to R based on the
         matlab versions SFA toolkit 1.0 by Pietro Berkes and SFA
         toolkit 2.8 by Wolfgang Konen for matlab.
-Version: 1.01
+Version: 1.02
 URL: http://gociop.de/research-projects/sfa/
-Date: 2012-May-09
+Date: 2012-Nov-20
 Depends: R (>= 2.0.0), MASS
 Collate: 'eta.R' 'gauss.R' 'lcov.R' 'nlRegress.R' 'sfa.R'
         'sfaClassify.R' 'sfaCreate.R' 'sfaExecute.R' 'sfaExpand.R'
         'sfaFileIO.R' 'sfaGetHf.R' 'sfaHelperFunctions.R'
         'sfaParamBoot.R' 'sfaStep.R' 'sfaTimediff.R'
-Packaged: 2012-05-09 08:49:20 UTC; Martin
+Packaged: 2012-11-20 12:36:18 UTC; Martin
 Repository: CRAN
-Date/Publication: 2012-05-09 12:34:37
+Date/Publication: 2012-11-20 13:15:55

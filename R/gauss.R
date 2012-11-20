@@ -47,7 +47,8 @@ gaussClassifier <- function(gauss,y,realC,method="train"){
         for(n in 1:nclass){
             ind = which(realC==gauss$uni[n]);
             gauss$X0[n,] = colMeans(y[ind,]);
-            arg = y[ind,]-customRep(t(gauss$X0[n,]),length(ind)); 
+            #arg = y[ind,]-customRep(t(gauss$X0[n,]),length(ind)); 
+            arg = y[ind,]-matrix(t(gauss$X0[n,]),length(ind),length(t(gauss$X0[n,])),byrow=TRUE); #MZ, 11.11.12: speedfix
             COV = t(arg) %*% arg/(length(ind)-1);
 			if (epsD>0){
                 dcov = diag(COV);

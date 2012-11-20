@@ -17,12 +17,14 @@
 ###################################################################################
 sfaExpand <- function (sfaList, DATA){   
 	n=customSize(DATA,2);
-	DATA=cbind(DATA, matrix(0,customSize(DATA,1),sfaList$xpDimFun(n)-n))
+	m=customSize(DATA,1);
+	DATA=cbind(DATA, matrix(0,m,sfaList$xpDimFun(n)-n))
 	k=n+1;
 
 	for (i in 1:n){
 		len=n-i+1;
-		tmp=customRepmat (DATA[,i],1,len);  
+		#tmp=customRepmat(DATA[,i],1,len);  
+		tmp=matrix(DATA[,i],m,len);#MZ, 11.11.12: speedfix
 		DATA[,k:(k+len-1)]=tmp*DATA[,i:n];
 		k=k+len;
 	}	
