@@ -6,7 +6,7 @@
 # % Analysis. Cognitive Sciences EPrint Archive (CogPrint) 4104, http://cogprints.org/4104/ (2005)
 
 ## get path of test project
-path<-.find.package("rSFA")
+path<-find.package("rSFA")
 #path<-file.path(testPath,"demo01")
 ## show path
 path<-paste(path,"demoFiles",sep="/")

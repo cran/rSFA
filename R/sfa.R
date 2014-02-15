@@ -6,8 +6,8 @@
 #' \tabular{ll}{
 #' Package: \tab rSFA\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.02\cr
-#' Date: \tab 20.11.2012\cr
+#' Version: \tab 1.03\cr
+#' Date: \tab 15.02.2014\cr
 #' Maintainer: \tab Martin Zaefferer \email{martin.zaefferer@@gmx.de}\cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr

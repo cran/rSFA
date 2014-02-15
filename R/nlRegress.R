@@ -16,6 +16,7 @@
 #'	 \item{res$R}{ (T x 1) the function fitted by NL-regression  }
 #'	 \item{res$rcoef}{ (M x 1) the coefficients for the NL-expanded dimensions  }
 #' @export
+#' @importFrom MASS ginv
 ###################################################################################
 sfaNlRegress <- function (sfaList, arg, func){
 	#to matrix

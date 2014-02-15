@@ -9,6 +9,7 @@
 #' @return matrix \code{DATA} \cr
 #' - \code{DATA} contains the derivative signals, with the same structure as the input data.
 #' @export
+#' @importFrom stats filter
 ###################################################################################
 sfaTimediff <- function (DATA, axType="ORD1"){
 	#if (is.null(axType)){

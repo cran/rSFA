@@ -10,7 +10,7 @@
 # % that are slower than the driving force", http://arxiv.org/abs/0911.4397. 
 
 ## get path of test project
-path<-.find.package("rSFA")
+path<-find.package("rSFA")
 #path<-file.path(testPath,"demo01")
 ## show path
 path
@@ -18,5 +18,3 @@ path
 source(paste(path,"/demoFiles/drive.R",sep=""))
 
 result<-drive(19,1,50,1.9,2,0,"SVDSFA")
-
-#TODO: one graph is missing???

@@ -31,6 +31,7 @@
 #'
 #' @seealso  \code{\link{gaussCreate}} 
 #' @export
+#' @importFrom MASS ginv
 ###################################################################################
 gaussClassifier <- function(gauss,y,realC,method="train"){
 	aligned=gauss$aligned
