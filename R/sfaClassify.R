@@ -7,7 +7,7 @@
 #' @param x				Input data, each column a different variable
 #' @param opts			list
 #'
-#' @return preprocessed data, which is \code{sfaList$W0 %*% (x - sfaList$avg0) }
+#' @return preprocessed data
 #' 
 #' @seealso  \code{\link{sfaClassPredict}} \code{\link{sfaClassify}} 
 #' @export

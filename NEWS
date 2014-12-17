@@ -1,3 +1,9 @@
+Version 1.04
+  - Bugfix for etaval function, now computed correctly and uses a default value for T (=length(x))
+
+Version 1.03
+  - Fix of namespace, imports, depends.
+
 Version 1.02
 	- Significant speed improvements with better replacement of repmat (customRep) functions
 	- Improvement of documentation

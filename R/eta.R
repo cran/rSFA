@@ -1,4 +1,4 @@
-#TODO change names, too short #TODO replaced by etaval???
+#TODO change names, too short #TODO replaced by etaval?
 ###################################################################################
 # Computes the eta value of a signal
 #
@@ -10,8 +10,8 @@
 # @keywords internal
 ###################################################################################
 eta <- function(signal, T){
-	res=var(sfaTimediff(signal));
-	res=sqrt(res)%*%T/(2*pi); #TODO test this
+	res=var(sfaTimediff(signal))
+	res=sqrt(res)%*%T/(2*pi)
 }
 
 
@@ -19,14 +19,14 @@ eta <- function(signal, T){
 #' Computes the eta value of a signal (slowness)
 #'
 #' @param x 	The columns of signal correspond to different input components. Must be normalized (zero mean, unit variance)
-#' @param t		Time interval
+#' @param T		Time interval
 #'
 #' @return returns the eta value of the signal in a time interval T time units long.
 # @references  \code{\link{leta}}
 #' @export
 ###################################################################################
-etaval <- function(x,t){
-	return((T/(2*pi))%*%sqrt(mean(diff(x)^2))/(sqrt(mean((x-mean(x))^2)))) #matrix divide? TODO   a%*%solve(b)
+etaval <- function(x,T=length(x)){
+	return(as.numeric((T/(2*pi))%*%sqrt(mean(diff(x)^2))/(sqrt(mean((x-mean(x))^2)))))
 }
 
 ###################################################################################
