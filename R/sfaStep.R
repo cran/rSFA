@@ -149,7 +149,7 @@ sfa2Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
 					sfaList$tlen0=sfaList$lcov$tlen;					
 				}
 				else if(sfaList$ppType=="PCAVAR"){
-					# another preprocessing as done in [Wiskott&Sejnowski'02] which
+					# another preprocessing as done by Wiskott&Sejnowski 2002 which
 					# does not use PCA, but simply shifts and scales the input data to
 					# have zero mean and unit variance
 					#
@@ -204,7 +204,7 @@ sfa2Step <- function (sfaList, arg=NULL, step=NULL, method=NULL){
 				# LCOV_PCA2, taking care of zero or very small eigenvalues in B
 				# by using the SVD approach
 				# 
-				print("Using alternate [WisSej02] approach for SFA-calculation ..."); #TODO verbosity einführen
+				print("Using alternate [WisSej02] approach for SFA-calculation ...")
 				pcaResult<-lcovPca2(sfaList$xp);
 				S<-pcaResult$W    # S: sphering matrix for expanded data (xphdl)
 				#not used anywhere?#DS<-pcaResult$DW   # DS: de-sphering matrix, BD: eigenvalues  

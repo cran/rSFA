@@ -68,7 +68,7 @@ gaussClassifier <- function(gauss,y,realC,method="train"){
             }
             gauss$COV[,,n] = COV; 
 			iCOV<-try(solve(COV)); 
-			if(class(iCOV) == "try-error"){ 
+			if(inherits(iCOV,"try-error")){ 
 				#warning("The function solve(COV) in gaussClassifier produced an error, ginv(COV) is used instead");   
 				iCOV= ginv(COV);
 			}

@@ -1,8 +1,14 @@
+Version 1.5
+	- Bugfix (check inherits instead of class in customSize function)
+	- Added some importFrom's
+	- Minor fixes to Package DESCRIPTION and Title 
+	- Changed version number scheme according to CRAN recommendations
+  
 Version 1.04
-  - Bugfix for etaval function, now computed correctly and uses a default value for T (=length(x))
+	- Bugfix for etaval function, now computed correctly and uses a default value for T (=length(x))
 
 Version 1.03
-  - Fix of namespace, imports, depends.
+	- Fix of namespace, imports, depends.
 
 Version 1.02
 	- Significant speed improvements with better replacement of repmat (customRep) functions

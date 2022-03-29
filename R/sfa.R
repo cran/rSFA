@@ -1,29 +1,28 @@
 # This code is based on the matlab packages SFA-tk 1.0 and the expansion V2.X
 
 # Package Description for Roxygene:
-#' Slow Feature Analysis in R
+#' Slow Feature Analysis
 #'
 #' \tabular{ll}{
 #' Package: \tab rSFA\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.04\cr
-#' Date: \tab 17.12.2014\cr
+#' Version: \tab 1.5\cr
+#' Date: \tab 29.03.2022\cr
 #' Maintainer: \tab Martin Zaefferer \email{martin.zaefferer@@gmx.de}\cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr
 #' }
 #'
-#' Slow Feature Analysis in R, ported to R based on the matlab versions SFA toolkit 1.0 by Pietro Berkes and SFA
+#' Slow Feature Analysis (SFA), ported to R based on the matlab implementations SFA toolkit 1.0 by Pietro Berkes and SFA
 #'    toolkit 2.8 by Wolfgang Konen.
 #'
-#' @title Slow Feature Analysis in R
+#' @title Slow Feature Analysis
 #' @name rSFA-package
 #' @aliases rSFA
 #' @docType package
 #' @author Wolfgang Konen \email{wolfgang.konen@@fh-koeln.de}, Martin Zaefferer, Patrick Koch; 
 #'			Bug hunting and testing by Ayodele Fasika, Ashwin Kumar, Prawyn Jebakumar
 #' @keywords slow feature analysis timeseries classification
-#' @references \url{http://gociop.de/research-projects/sfa/}
 # @useDynLib rSFA  #remark: deprecated! not working properly, thus removed
 #End of Package Description
 NA #NULL, ends description without hiding first function

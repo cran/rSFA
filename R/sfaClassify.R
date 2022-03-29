@@ -44,6 +44,9 @@ sfaPreproc <- function(sfaList, x, opts){
 #'    \item{res$predX}{ predictions w/o SFA (only GaussClassifier) on test set (only if opts.xFilename exists) }
 #'
 #' @seealso  \code{\link{sfaClassify}} \code{\link{sfaExecute}}
+#' @importFrom grDevices rainbow
+#' @importFrom graphics lines par points
+#' @importFrom stats rnorm runif sd var
 #' @export
 ###################################################################################
 sfaClassPredict <- function(xtst,realcTst,opts){	

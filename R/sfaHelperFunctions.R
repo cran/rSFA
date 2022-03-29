@@ -65,7 +65,7 @@ customRepmat <- function(a,n,m) {
 #' @keywords internal
 ###################################################################################
 customSize<-function(x,i=NULL){	
-	if((class(x)=="numeric")||(class(x)=="vector")||(class(x)=="integer")){
+	if(inherits(x,"numeric")||inherits(x,"vector")||inherits(x,"integer")){
 		res=c(1,length(x))
 	}
 	else{
